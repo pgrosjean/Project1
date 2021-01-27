@@ -24,4 +24,4 @@ Testing is as simple as running
 python -m pytest
 ```
 from the root directory of this project.
-This testing corresponds to the badge at the top of this
+This testing corresponds to the badge at the top of this readme.
