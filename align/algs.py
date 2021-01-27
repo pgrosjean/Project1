@@ -463,6 +463,10 @@ class NeedlemanWunsch(PairwiseAligner):
 		gap opening penalty for NeedlemanWunsch
     gap_extend : float
 		gap extension penalty for NeedlemanWunsch
+	overlap_alignment : bool, default=False
+		whether or not to allow variable start stop for overlap
+		alignment, which does not assume the reads start at the
+		same resiude.
 
 	Attributes
 	----------
@@ -480,8 +484,9 @@ class NeedlemanWunsch(PairwiseAligner):
 		Score of alignment from algorithm for NeedlemanWunsch
 
 	"""
-	def __init__(self, substitution_matrix_file, gap_open, gap_extend):
+	def __init__(self, substitution_matrix_file, gap_open, gap_extend, overlap_alignment=False):
 		super(NeedlemanWunsch, self).__init__(substitution_matrix_file, gap_open, gap_extend)
+		self._overlap = overlap_alignment
 
 	def _fill_scoring_matrices(self, s_mat, x_mat, y_mat, tb_mat):
 		"""This function uses dynamic programming to fill in all of the
@@ -547,7 +552,23 @@ class NeedlemanWunsch(PairwiseAligner):
 					tb_mat[i, j] = 'side_extended'
 				elif max_ind == 2:
 					tb_mat[i, j] = 'diag'
-		self.align_score_ = s_mat[-1, -1]
+		self.score_matrix = s_mat
+		if self._overlap ==  False:
+			self.align_score_ = s_mat[-1, -1]
+		elif self._overlap == True:
+			max_last_col = np.amax(s_mat[:, -1])
+			argmax_last_col = np.argmax(s_mat[:, -1])
+			max_last_row = np.amax(s_mat[-1, :])
+			argmax_last_row = np.argmax(s_mat[-1, :])
+			ind = np.argmax([max_last_col, max_last_row])
+			if ind == 0:
+				align_score = max_last_col
+				max_index = [argmax_last_col, len(seq2)]
+			elif ind == 1:
+				align_score = max_last_row
+				max_index = [len(seq1), argmax_last_row]
+			self.align_score_ = align_score
+			self._max_index = max_index
 		return s_mat, x_mat, y_mat, tb_mat
 
 	def _traceback(self, s_mat, tb_mat):
@@ -577,8 +598,11 @@ class NeedlemanWunsch(PairwiseAligner):
 		seq2 = self.seq2
 		alignment_seq1 = ''
 		alignment_seq2 = ''
-		i = len(seq1)
-		j = len(seq2)
+		if self._overlap == False:
+			i = len(seq1)
+			j = len(seq2)
+		elif self._overlap == True:
+			i, j = self._max_index
 		while i > 0 and j > 0:
 			tb_val = tb_mat[i, j]
 			if tb_val == 'top_extended':

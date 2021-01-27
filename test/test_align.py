@@ -1250,3 +1250,12 @@ def test_alignment_score_nw_2():
 	assert nw_aligner.align_score_ == 591.5
 	assert nw_aligner.alignment_ == ('TSPASIRPPAGPSSRPAMVSSRRTRPSPPGPRRPTGRPCCSAAPRRPQATGGWKTCSGTCTTSTSTRHRGRSGWSARTTTAACLRASRKSMRAACSRSAGSRPNRFAPTLMSSCITSTTGPPAWAGDRSHE',
 	'TSPASIRPPAGPSSR---------RPSPPGPRRPTGRPCCSAAPRRPQATGGWKTCSGTCTTSTSTRHRGRSGW----------RASRKSMRAACSRSAGSRPNRFAPTLMSSCITSTTGPPAWAGDRSHE')
+
+def test_overlap_global_alignment():
+	'''
+	For testing overlap alignement extra credit.
+	'''
+	nw_aligner = algs.NeedlemanWunsch('./scoring_matrices/BLOSUM62.mat', 10, 1, overlap_alignment=True)
+	nw_aligner.align('./files_test/test7.fa', './files_test/test8.fa')
+	assert nw_aligner.align_score_ == 61.0
+	assert nw_aligner.alignment_ == ('WAAAVLVNNFLA', 'WAAAVLVNNFLA')
