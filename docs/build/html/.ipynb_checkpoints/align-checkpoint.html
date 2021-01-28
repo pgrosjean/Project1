@@ -172,22 +172,29 @@
 <p>The core algorithm module of my BMI 203 Project 1</p>
 <dl class="py class">
 <dt id="align.algs.NeedlemanWunsch">
-<em class="property">class </em><code class="sig-prename descclassname">align.algs.</code><code class="sig-name descname">NeedlemanWunsch</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">substitution_matrix_file</span></em>, <em class="sig-param"><span class="n">gap_open</span></em>, <em class="sig-param"><span class="n">gap_extend</span></em><span class="sig-paren">)</span><a class="headerlink" href="#align.algs.NeedlemanWunsch" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">align.algs.</code><code class="sig-name descname">NeedlemanWunsch</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">substitution_matrix_file</span></em>, <em class="sig-param"><span class="n">gap_open</span></em>, <em class="sig-param"><span class="n">gap_extend</span></em>, <em class="sig-param"><span class="n">overlap_alignment</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#align.algs.NeedlemanWunsch" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="../align.html#align.algs.PairwiseAligner" title="align.algs.PairwiseAligner"><code class="xref py py-class docutils literal notranslate"><span class="pre">align.algs.PairwiseAligner</span></code></a></p>
 <dl class="simple">
 <dt>This class is an implenetation of the NeedlemanWunsch pairwise</dt><dd><p>global aligner algorithm and inherets from the PairwiseAligner
-class. This class can be used to align any two protein sequences.
-for NeedlemanWunsch</p>
+class. This class can be used to align any two protein sequences.</p>
 </dd>
 </dl>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
+<dd class="field-odd"><dl>
 <dt><strong>substitution_matrix_file</strong><span class="classifier">str</span></dt><dd><p>path/filename of substitution matrix for NeedlemanWunsch</p>
 </dd>
 <dt><strong>gap_open</strong><span class="classifier">float</span></dt><dd><p>gap opening penalty for NeedlemanWunsch</p>
 </dd>
-<dt><strong>gap_extend</strong><span class="classifier">float</span></dt><dd><p>gap extension penalty for NeedlemanWunsch</p>
+<dt><strong>gap_extend</strong><span class="classifier">float</span></dt><dd><blockquote>
+<div><p>gap extension penalty for NeedlemanWunsch</p>
+</div></blockquote>
+<dl class="simple">
+<dt>overlap_alignment<span class="classifier">bool, default=False</span></dt><dd><p>whether or not to allow variable start stop for overlap
+alignment, which does not assume the reads start at the
+same resiude.</p>
+</dd>
+</dl>
 </dd>
 </dl>
 </dd>
@@ -242,9 +249,9 @@ any pairwise alignment algorithm class.</p>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>substitution_matrix_file</strong><span class="classifier">str</span></dt><dd><p>path/filename of substitution matrix</p>
 </dd>
-<dt><strong>gap_open</strong><span class="classifier">float</span></dt><dd><p>gap opening penalty</p>
+<dt><strong>gap_open</strong><span class="classifier">float</span></dt><dd><p>gap opening penalty (should be positive value, think abs value)</p>
 </dd>
-<dt><strong>gap_extend</strong><span class="classifier">float</span></dt><dd><p>gap extension penalty</p>
+<dt><strong>gap_extend</strong><span class="classifier">float</span></dt><dd><p>gap extension penalty (should be postivie value, think abs value)</p>
 </dd>
 </dl>
 </dd>
