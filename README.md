@@ -16,7 +16,7 @@ To view the API docs for the align module and specifically the classes contained
 The [Align Module](https://github.com/pgrosjean/Project1/tree/main/align) holds the algs submodule that contains both the base class PairwiseAligner and the inhereted classes for SmithWaterman and NeedlemanWunsch. See the API docs for more in depth descriptions of how to use this module.
 
 ### Pytest Functionalities
-All of the necessary fasta files for testing are in [this folder] (https://github.com/pgrosjean/Project1/tree/main/files_test) and the actual unit tests are implemented [here] (https://github.com/pgrosjean/Project1/blob/main/test/test_align.py).
+All of the necessary fasta files for testing are in [this folder](https://github.com/pgrosjean/Project1/tree/main/files_test) and the actual unit tests are implemented [here](https://github.com/pgrosjean/Project1/blob/main/test/test_align.py).
 
 ### Testing
 Testing is as simple as running
