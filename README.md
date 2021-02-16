@@ -10,7 +10,7 @@ This repo holds all of the information needed to run the Smith-Waterman and Need
 This repository is set up with three main sections locations for the (1) Docs (2) Align Module and (3) the pytest functionalities.
 
 ### Docs
-To view the API docs for the align module and specifically the classes contained within align.algs please see the [API doc](https://github.com/pgrosjean/Project1/blob/main/docs/build/html/align.html) by running "open index.rst" in the location of the file pointed to by the API doc link.
+To view the API docs for the align module and specifically the classes contained within align.algs please see the [API doc](https://github.com/pgrosjean/Project1/blob/main/docs/build/html/align.html) by running "open index.html" in the location of the file pointed to by the API doc link.
 
 ### Align Module
 The [Align Module](https://github.com/pgrosjean/Project1/tree/main/align) holds the algs submodule that contains both the base class PairwiseAligner and the inhereted classes for SmithWaterman and NeedlemanWunsch. See the API docs for more in depth descriptions of how to use this module.
